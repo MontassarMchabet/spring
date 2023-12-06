@@ -2,6 +2,7 @@ package com.example.foyer.controller;
 
 import com.example.foyer.entity.Reservation;
 import com.example.foyer.service.IReservationService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,5 +28,9 @@ public class ReservationController {
     public Reservation retrieveReservation(@PathVariable long idReservation) {
         return reservationService.retrieveReservation(idReservation);
     }
+    @PostMapping("{idChambre}/{cinEtudiant}")
+    public Reservation ajouterReservation (@PathVariable long idChambre,@PathVariable long cinEtudiant){
+        return reservationService.ajouterReservation(idChambre,cinEtudiant);
+    } ;
 
 }

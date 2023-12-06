@@ -1,6 +1,7 @@
 package com.example.foyer.controller;
 
 import com.example.foyer.entity.Foyer;
+import com.example.foyer.entity.Universite;
 import com.example.foyer.service.IFoyerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ public class FoyerController {
     public Foyer updateFoyer(@RequestBody Foyer f) {
         return iFoyerService.updateFoyer(f);
     }
+    @PutMapping("update2/{idFoyer}")
+    public Foyer updateFoyer2(@PathVariable long idFoyer, @RequestBody Foyer f) {
+        return iFoyerService.updateFoyer2(idFoyer,f);
+    }
 
     @GetMapping("{idFoyer}")
     public Foyer retrieveFoyer(@PathVariable long idFoyer) {
@@ -37,4 +42,17 @@ public class FoyerController {
         iFoyerService.removeFoyer(idFoyer);
 
     }
+    @PostMapping("ajouterFoyerAffecterAUniv/{idUniversite}")
+    public Foyer ajouterFoyerEtAffecterAUniversite (@RequestBody Foyer foyer,@PathVariable long idUniversite)  {
+        return iFoyerService.ajouterFoyerEtAffecterAUniversite(foyer,idUniversite);
+    }
+    @GetMapping("nom")
+    public List<String> getnom() {
+        return iFoyerService.getnom();
+    }
+    @GetMapping("getIdParNom/{nomFoyer}")
+    public long getIdParNom(@PathVariable String nomFoyer) {
+        return iFoyerService.getIdParNom(nomFoyer);
+    }
+
 }

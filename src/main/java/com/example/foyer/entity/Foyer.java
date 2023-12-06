@@ -1,5 +1,6 @@
 package com.example.foyer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -18,7 +19,8 @@ public class Foyer {
      long idFoyer;
     String nomFoyer;
     long capaciteFoyer;
-    @OneToOne
+    @OneToOne (mappedBy = "foyers")
+    @JsonIgnore
     Universite universite;
     @OneToMany(mappedBy = "foyer",cascade =CascadeType.ALL)
     Set<Bloc> blocs;

@@ -1,5 +1,6 @@
 package com.example.foyer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,8 +15,10 @@ public class Universite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long idUniversite;
+    @Column(unique = true)
     String nomUniversite;
     String adresse;
-    @OneToOne(mappedBy = "universite")
-    Foyer foyer;
+    @OneToOne()
+
+    Foyer foyers;
 }

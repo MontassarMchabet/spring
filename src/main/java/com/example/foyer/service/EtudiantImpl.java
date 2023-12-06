@@ -3,10 +3,12 @@ package com.example.foyer.service;
 import com.example.foyer.entity.Etudiant;
 import com.example.foyer.repository.EtudiantRepo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class EtudiantImpl implements IEtudiantService{
     private final EtudiantRepo etudiantRepo;
@@ -27,7 +29,7 @@ public class EtudiantImpl implements IEtudiantService{
 
     @Override
     public Etudiant retrieveEtudiant(long idEtudiant) {
-        return etudiantRepo.findById(idEtudiant).orElse(null);
+        return etudiantRepo.findById(idEtudiant).orElseThrow(()->new IllegalArgumentException("Etudiant with ID " + idEtudiant + " not found"));
     }
 
     @Override
